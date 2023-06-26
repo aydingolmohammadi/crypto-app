@@ -20,15 +20,15 @@ class CryptoStatsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Profile(
-              message: 'message',
-              name: 'name',
+              message: 'Wellcome',
+              name: 'Aydin Golmohammadi',
               avatar: AssetImage('assets/images/avatar.jpeg'),
             ),
             SizedBox(height: 20),
             BalanceCard(
-              balance: 'balance',
-              monthlyProfit: 'monthlyProfit',
-              profitPer: 'profitPer',
+              balance: '\$450,654',
+              monthlyProfit: '\$12,654',
+              profitPer: '10%',
             ),
             SizedBox(height: 20),
             LivePrices(),

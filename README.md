@@ -32,16 +32,11 @@
     <table>
         <tr>
             <td style="text-align: center">
-                    <img src="assets/mobile_1.png" width="300"/>
+                    <img src="assets/01.png" width="300"/>
             </td>            
             <td style="text-align: center">
-                    <img src="assets/mobile_2.png" width="300"/>
+                    <img src="assets/02.png" width="300"/>
             </td>                     
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                    <img src="assets/tablet_.png" width="300"/>
-            </td>                                
         </tr>
     </table>
 </div>
