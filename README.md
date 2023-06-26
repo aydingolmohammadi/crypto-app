@@ -16,9 +16,9 @@
     - Cached_circle_avatar: to cache crypto icons
 
 # Environments
-    I used Visual Studio Code 1.60.1
-    Flutter 2.5.0 • channel stable 
-    Dart 2.14.0
+    I used Android Studio
+    Flutter 3.10.5 • channel stable 
+    Dart 2.19.0
 
 # How to run
 
