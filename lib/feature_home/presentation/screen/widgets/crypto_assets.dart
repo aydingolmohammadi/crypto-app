@@ -16,41 +16,59 @@ class CryptoAssets extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const Text('Crypto assets', style: TextStyle(fontSize: 17)),
-        Container(
-          height: 400,
-          padding: const EdgeInsets.only(top: 20),
-          child: BlocBuilder<CryptoAssetsCubit, CryptoAssetsState>(
-            builder: (context, state) {
-              if (state is! CryptoLoaded) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              final cryptoAssets = state.cryptoAssets;
-              return ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: cryptoAssets.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      leading: CachedCircleAvatar(
-                        url: cryptoAssets[index].url,
-                      ),
-                      title: Center(
-                        child: Text(
-                          cryptoAssets[index].assetId,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
+        const SizedBox(
+          height: 20,
+        ),
+        BlocBuilder<CryptoAssetsCubit, CryptoAssetsState>(
+          builder: (context, state) {
+            if (state is! CryptoLoaded) {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
-            },
-          ),
+            }
+            final cryptoAssets = state.cryptoAssets;
+            return ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                print(cryptoAssets[index].url);
+                return Column(
+                  children: [
+                    Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffF9FAFF),
+                        borderRadius: BorderRadius.circular(10)
+                      ),
+                      child: Row(
+                        children: [
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          CachedCircleAvatar(
+                            url: cryptoAssets[index+50].url,
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            cryptoAssets[index+50].assetId,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      )
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                );
+              },
+            );
+          },
         ),
       ],
     );

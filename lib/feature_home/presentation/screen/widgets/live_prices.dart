@@ -21,18 +21,46 @@ class _LivePricesState extends State<LivePrices> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Text('Live Prices', style: TextStyle(fontSize: 17)),
-        Container(
-          height: 230,
-          padding: const EdgeInsets.only(top: 10),
-          child: StreamBuilder<dynamic>(
-            stream: realDataStream,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                final realData = Trade.fromJson(
-                    jsonDecode(snapshot.data.toString())
-                        as Map<String, dynamic>);
-                return ListView.builder(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Live Prices', style: TextStyle(fontSize: 17)),
+            Container(
+              height: 25,
+              width: 60,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(
+                  color: Color(0xffdcdcdc),
+                  width: 1,
+                ),
+              ),
+              child: const Center(
+                child: Text(
+                  'See all',
+                  style: TextStyle(
+                    color: Color(0xff5149F7),
+                    fontSize: 10
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        StreamBuilder<dynamic>(
+          stream: realDataStream,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final realData = Trade.fromJson(jsonDecode(
+                snapshot.data.toString(),
+              ) as Map<String, dynamic>);
+              return SizedBox(
+                height: 160,
+                child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemCount: tradeList.length,
@@ -48,49 +76,85 @@ class _LivePricesState extends State<LivePrices> {
 
                     return Padding(
                       padding: const EdgeInsets.only(right: 10),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Container(
-                          width: 250,
-                          height: 230,
-                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(children: <Widget>[
-                                CircleAvatar(
-                                    backgroundImage: tradeList[index].icon),
-                                const SizedBox(width: 20),
-                                Text(tradeList[index].title1,
-                                    style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold)),
-                                Text(tradeList[index].title2,
-                                    style: const TextStyle(fontSize: 20)),
-                              ]),
-                              Text(tradeList[index].price.toString(),
-                                  style: const TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold)),
-                              Text(tradeList[index].takerSide,
-                                  style: const TextStyle(fontSize: 16))
-                            ],
+                      child: Container(
+                        width: 230,
+                        height: 150,
+                        decoration: const BoxDecoration(
+                          color: Color(0xffF9FAFF),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(0),
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(70),
                           ),
+                        ),
+                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            SizedBox(
+                              height: 40,
+                              child: Row(
+                                children: <Widget>[
+                                  Text(tradeList[index].title1,
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold)),
+                                  Text(
+                                    tradeList[index].title2,
+                                    style: const TextStyle(fontSize: 20),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  CircleAvatar(
+                                    backgroundImage: tradeList[index].icon,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 35,
+                              child: Text(
+                                '\$' + tradeList[index].price.toString(),
+                                style: const TextStyle(
+                                  fontSize: 24,
+                                ),
+                              ),
+                            ),
+                            if (tradeList[index].takerSide == "SELL")
+                              SizedBox(
+                                height: 20,
+                                child: Text(
+                                  tradeList[index].takerSide,
+                                  style: const TextStyle(
+                                      fontSize: 16, color: Colors.red),
+                                ),
+                              ),
+                            if (tradeList[index].takerSide == "BUY")
+                              SizedBox(
+                                height: 20,
+                                child: Text(
+                                  tradeList[index].takerSide,
+                                  style: const TextStyle(
+                                      fontSize: 16, color: Colors.green),
+                                ),
+                              ),
+                          ],
                         ),
                       ),
                     );
                   },
-                );
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            },
-          ),
+                ),
+              );
+            } else {
+              return const SizedBox(
+                height: 160,
+                child: Center(child: CircularProgressIndicator()),
+              );
+            }
+          },
         ),
       ],
     );

@@ -17,73 +17,90 @@ class BalanceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     const whiteText = TextStyle(color: Colors.white);
     return Container(
+      height: 210,
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.blueAccent,
+        borderRadius: BorderRadius.circular(35),
+        color: const Color(0xff443CEE),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Text(
-            'balance',
-            style: whiteText.copyWith(fontSize: 17),
-          ),
-          Text(
-            balance,
-            style: whiteText.copyWith(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
+          SizedBox(
+            height: 25,
+            child: Center(
+              child: Text(
+                'balance',
+                style: whiteText.copyWith(fontSize: 14),
+              ),
             ),
           ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'monthlyProfit',
-                      style: whiteText.copyWith(fontSize: 17),
-                    ),
-                    Text(
-                      monthlyProfit,
-                      style: whiteText.copyWith(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  ]),
-              Container(
-                padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(.15),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(15),
-                  ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Icon(
-                      Icons.arrow_drop_up,
-                      size: 20,
-                      color: Colors.greenAccent,
-                    ),
-                    Text(
-                      profitPer,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
+          SizedBox(
+            height: 50,
+            child: Center(
+              child: Text(
+                balance,
+                style: whiteText.copyWith(
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ],
+            ),
           ),
+          SizedBox(
+            height: 25,
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    monthlyProfit,
+                    style: whiteText.copyWith(
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Icon(
+                        Icons.arrow_drop_up,
+                        size: 20,
+                        color: Colors.greenAccent,
+                      ),
+                      Text(
+                        profitPer,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            height: 45,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Center(
+              child: Text(
+                'Sell',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Color(0xff5149F7),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
