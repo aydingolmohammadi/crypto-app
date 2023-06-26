@@ -14,6 +14,7 @@ class CryptoStatsPage extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return const SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       child: Padding(
         padding: EdgeInsets.fromLTRB(15, 30, 15, 10),
         child: Column(

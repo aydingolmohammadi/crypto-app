@@ -28,6 +28,7 @@ class CryptoAssets extends StatelessWidget {
               }
               final cryptoAssets = state.cryptoAssets;
               return ListView.builder(
+                physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: cryptoAssets.length,
                 itemBuilder: (context, index) {
