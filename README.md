@@ -1,4 +1,4 @@
-# Crypto Stats
+# Crypto App
 
 
 # 3rd Packages
